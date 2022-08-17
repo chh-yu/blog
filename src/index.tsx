@@ -19,8 +19,25 @@ import ToTop from './components/ToTop'
 import Talk from './pages/Talk'
 import Author from './pages/Author'
 import NotFound from './pages/NotFound'
+import http from './utils/http'
 
 const App = () => {
+    useEffect(()=>{
+        const token = localStorage.getItem("token")
+        http.post('/v1/api/visitor/record', {
+            token
+        })
+        .then(e=>{
+            if(e.data && e.data.code === 1){
+                localStorage.setItem("token", e.data.data.token)
+            }else{
+                return Promise.reject("register failed")
+            }
+        })
+        .catch(e=>{
+            console.log(e)
+        })
+    }, [])
 	return <div className='bg-gray-100'>
         <Router basename='/blog'>
         {/* <Router basename='/'> */}
@@ -33,8 +50,9 @@ const App = () => {
                 <Route path='/*' element={<NotFound />}></Route>
             </Routes>
             <Footer />
-            <ToTop></ToTop>
+            <ToTop />
         </Router>
     </div>
 }
 ReactDom.render(<App></App>, document.getElementById('app'))
+

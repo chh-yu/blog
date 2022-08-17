@@ -1,9 +1,10 @@
-import {useEffect, useState} from 'react'
+import {useCallback, useEffect, useState} from 'react'
 import {Viewer} from '@bytemd/react'
 import breaks from '@bytemd/plugin-breaks'
 import http from '../utils/http'
 import {formatDate} from '../utils/utils'
 import {useParams} from 'react-router-dom'
+import {debounce} from '../utils/utils'
 interface ITalkItem {
 	id: number
 	content: string
@@ -40,9 +41,25 @@ const TalkMedia = (props: any) => {
 }
 const TalkItem = (props: any) => {
 	const [data, setData] = useState<ITalkItem>(props.data)
-    // useEffect(()=>{
-    //     console.log(data)
-    // }, [data])
+	const [like, setLike] = useState<boolean>(props.data.like)
+	const [likeCount, setLikeCount] = useState<number>(props.data.likecount?props.data.likecount:0)
+	const doLike = debounce((like: boolean, token: string, object_id: number | string)=>{
+		http.post('/v1/api/visitor/dolike', {
+			like,
+			token,
+			type: 'talk',
+			object_id
+		})
+	}, 2000)
+	const clickLike = ()=>{
+		setLike(!like)
+		if(!like){
+			setLikeCount((v)=>v+1)
+		}else{
+			setLikeCount((v)=>v-1)
+		}
+		doLike(!like, localStorage.getItem('token'), data.id)
+	}
 	return (
 		<div className="w-full shadow-lg mb-8 overflow-hidden">
 			<div className="text-sm text-gray-700">
@@ -56,6 +73,10 @@ const TalkItem = (props: any) => {
 					</div>
 				))}
 			</div>
+			<div className='flex pl-8 my-4 h-6 leading-6'>
+				<div onClick={clickLike} className={`leading-5 active:animate-ping cursor-pointer iconfont ${like ? 'icon-zantongfill text-pink-600':'icon-zantong text-black'}`}></div>
+				<div className='mx-2 text-sm text-gray-500'>{likeCount ? likeCount : ""}</div>
+			</div>
 		</div>
 	)
 }
@@ -63,7 +84,9 @@ const Talk: any = (props: object) => {
 	const [data, setData] = useState<ITalkItem[]>([])
 	const [now, setNow] = useState<Date>(new Date())
 	useEffect(() => {
-		http.get('/v1/api/talk').then((e) => {
+		http.post('/v1/api/talk', {
+			token: localStorage.getItem('token')
+		}).then((e) => {
 			let data: ITalkItem[] = e.data.data
 			data.sort((a, b) => {
 				return Number(b.timestamp) - Number(a.timestamp)
