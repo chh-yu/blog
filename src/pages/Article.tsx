@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react'
 import {Viewer} from '@bytemd/react'
 import breaks from '@bytemd/plugin-breaks'
 import http from '../utils/http'
-import {formatDate} from '../utils/utils'
+import {formatDate, useScrollTotop} from '../utils/utils'
 import {useParams} from 'react-router-dom'
 import frontmatter from '@bytemd/plugin-frontmatter'
 const plugins = [breaks(),frontmatter()]
@@ -17,7 +17,8 @@ interface IArticleContent {
 }
 const Articles: any = (props: object) => {
 	const [data, setData] = useState<IArticleContent>(null)
-	const [params] = useState(useParams()) 
+	const [params] = useState(useParams())
+	useScrollTotop()
 	useEffect(() => {
 		http.post('/v1/api/article/content', {
 			id: params.titleid

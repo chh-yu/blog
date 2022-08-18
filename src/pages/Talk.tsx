@@ -1,10 +1,12 @@
-import {useCallback, useEffect, useState} from 'react'
+import {useCallback, useEffect, useRef, useState} from 'react'
 import {Viewer} from '@bytemd/react'
 import breaks from '@bytemd/plugin-breaks'
 import http from '../utils/http'
 import {formatDate} from '../utils/utils'
 import {useParams} from 'react-router-dom'
 import {debounce} from '../utils/utils'
+import { useScrollTotop, useVisibleRef } from '../utils/utils'
+
 interface ITalkItem {
 	id: number
 	content: string
@@ -43,6 +45,7 @@ const TalkItem = (props: any) => {
 	const [data, setData] = useState<ITalkItem>(props.data)
 	const [like, setLike] = useState<boolean>(props.data.like)
 	const [likeCount, setLikeCount] = useState<number>(props.data.likecount?props.data.likecount:0)
+	const [visible, visibleRef] = useVisibleRef()
 	const doLike = debounce((like: boolean, token: string, object_id: number | string)=>{
 		http.post('/v1/api/visitor/dolike', {
 			like,
@@ -61,7 +64,7 @@ const TalkItem = (props: any) => {
 		doLike(!like, localStorage.getItem('token'), data.id)
 	}
 	return (
-		<div className="w-full shadow-lg mb-8 overflow-hidden">
+		<div  ref={visibleRef} className={`w-full shadow-lg mb-8 overflow-hidden  transition duration-500 ease-in-out ${visible ? "opacity-100":"opacity-0 translate-y-6"}`}>
 			<div className="text-sm text-gray-700">
 				{timeDisplay(Number(data.timestamp) * 1000, props.now.getTime())}
 			</div>
@@ -83,6 +86,7 @@ const TalkItem = (props: any) => {
 const Talk: any = (props: object) => {
 	const [data, setData] = useState<ITalkItem[]>([])
 	const [now, setNow] = useState<Date>(new Date())
+	useScrollTotop()
 	useEffect(() => {
 		http.post('/v1/api/talk', {
 			token: localStorage.getItem('token')
@@ -99,7 +103,7 @@ const Talk: any = (props: object) => {
 			<div
 				className="h-96 bg-cover bg-center"
 				style={
-					{'background-image': `url(https://chyu123.top/img/back.webp)`} as any
+					{'backgroundImage': `url(https://chyu123.top/img/back.webp)`} as any
 				}
 			>
 				<div className="w-full h-full bg-black bg-opacity-50 flex flex-col justify-center items-center text-white"></div>

@@ -1,3 +1,4 @@
+import { useCallback, useEffect, useState } from "react"
 export const debounce = (cb: Function, time: number): Function=>{
     let timer: any = null
     return (...args: any[])=>{
@@ -6,6 +7,17 @@ export const debounce = (cb: Function, time: number): Function=>{
             cb(...args)
             clearTimeout(timer)
         }, time)
+    }
+}
+export const throttle = (cb: Function, time: number): Function=>{
+    let timer: any = null
+    return (...args: any[])=>{
+        if(!timer)
+            timer = setTimeout(()=>{
+                cb(...args)
+                clearTimeout(timer)
+                timer = null
+            }, time)
     }
 }
 export const formatDate = function(time: number | string | Date){
@@ -25,4 +37,31 @@ export const formatDate = function(time: number | string | Date){
                 (sec < 10? '0' + sec : sec);
  
     return newTime;         
+}
+export const useVisibleRef = ()=>{
+    const [visible, setVisivle] = useState<boolean>(false)
+    const visibleRef: any = useCallback((node: any)=>{
+        if(node != null){
+            const visibleThrottle: any = throttle(()=>{
+                let {top} = node.getBoundingClientRect()
+                if(top < window.innerHeight){
+                    setVisivle(true)
+                    window.removeEventListener('scroll', visibleThrottle)
+                }
+            }, 200)
+            let {top} = node.getBoundingClientRect()
+            if(top < window.innerHeight){
+                setVisivle(true)
+                window.removeEventListener('scroll', visibleThrottle)
+            }else{
+                window.addEventListener('scroll', visibleThrottle)
+            }
+        }
+    }, [])
+    return [visible, visibleRef]
+}
+export const useScrollTotop = ()=>{
+	useEffect(()=>{
+        window.scrollTo(0, 0)
+    }, [])
 }

@@ -3,6 +3,7 @@ import breaks from '@bytemd/plugin-breaks'
 import http from '../utils/http'
 import {formatDate} from '../utils/utils'
 import {Link} from 'react-router-dom'
+import { useScrollTotop, useVisibleRef } from '../utils/utils'
 const plugins = [breaks()]
 interface IArticleitem {
 	id: string | number
@@ -12,11 +13,14 @@ interface IArticleitem {
 	cover: string
 	[key: string]: any
 }
+
 const ArticleItem = (props: any) => {
 	const [data, setData] = useState<IArticleitem>(props.data)
+	const [visible, visibleRef] = useVisibleRef()
 	return (
 		<div
-			className="h-32 md:h-48 p-5 bg-white mt-6 rounded-2xl hover:shadow-lg flex"
+			className={`h-32 md:h-48 p-5 bg-white mt-6 rounded-2xl hover:shadow-lg flex transition duration-500 ease-in-out ${visible ? "opacity-100":"opacity-0 translate-y-6"}`}
+			ref={visibleRef}
 		>
 			<div className="cursor-pointer h-full w-24 md:w-60 bg-black overflow-hidden flex-shrink-0">
 				{data.cover ? (
@@ -40,15 +44,13 @@ const ArticleItem = (props: any) => {
 		</div>
 	)
 }
-const Articles: any = () => {
+const Home: any = () => {
 	const [data, setData] = useState<IArticleitem[]>([])
 	const ref = useRef()
+	useScrollTotop()
 	useEffect(() => {
 		http.get('/v1/api/article/list').then((e) => {
 			let data: IArticleitem[] = e.data.data
-			data.sort((a, b) => {
-				return Number(b.timestamp) - Number(a.timestamp)
-			})
 			setData(data)
 		})
 	}, [])
@@ -82,4 +84,4 @@ const Articles: any = () => {
 		</>
 	)
 }
-export default Articles
+export default Home

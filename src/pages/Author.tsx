@@ -7,6 +7,7 @@ import breaks from '@bytemd/plugin-breaks'
 import gfm from '@bytemd/plugin-gfm'
 import highlightssr from '@bytemd/plugin-highlight-ssr'
 import frontmatter from '@bytemd/plugin-frontmatter'
+import { useScrollTotop } from '../utils/utils'
 const plugins = [breaks(), gfm(), highlightssr(), frontmatter()]
 class Article {
 	title: string
@@ -26,6 +27,7 @@ const AthorRoad = () => {
 	const [content, setContent] = useState("")
 	const [author, setAuthor] = useState("Set")
 	const navigate = useNavigate()
+	useScrollTotop()
 	useEffect(()=>{
 		data.title = title
 		data.cover = cover
