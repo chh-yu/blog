@@ -41,7 +41,7 @@ const TalkMedia = (props: any) => {
 		return <video controls className="w-full h-full object-contain" src={props.url} />
 	}
 }
-const TalkItem = (props: any) => {
+const TalkItem: React.FC<any> = (props: any) => {
 	const [data, setData] = useState<ITalkItem>(props.data)
 	const [like, setLike] = useState<boolean>(props.data.like)
 	const [likeCount, setLikeCount] = useState<number>(props.data.likecount?props.data.likecount:0)
@@ -70,7 +70,7 @@ const TalkItem = (props: any) => {
 			</div>
 			<div className="text-base md:text-xl my-4 ml-4 font-serif">{data.content}</div>
 			<div className="flex flex-wrap mb-2">
-				{data && data.medias.split('&&').map((i) => (
+				{data.medias && data.medias.split('&&').map((i) => (
 					<div className="w-1/3 h-36 md:h-64 p-px flex-grow" key={i}>
 						<TalkMedia url={i} />
 					</div>
@@ -83,7 +83,7 @@ const TalkItem = (props: any) => {
 		</div>
 	)
 }
-const Talk: any = (props: object) => {
+const Talk: React.FC = (props: object) => {
 	const [data, setData] = useState<ITalkItem[]>([])
 	const [now, setNow] = useState<Date>(new Date())
 	useScrollTotop()

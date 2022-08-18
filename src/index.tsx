@@ -4,13 +4,12 @@ import {
     BrowserRouter as Router,
     Routes,
     Route,
-    matchRoutes
+    matchRoutes,
+    Outlet
 } from 'react-router-dom'
 import Home from './pages/Home'
 import Article from './pages/Article'
 import 'tailwindcss/tailwind.css'
-import 'bytemd/dist/index.min.css'
-import './assets/css/github-markdown.css'
 import './assets/css/index.css'
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -43,11 +42,13 @@ const App = () => {
         {/* <Router basename='/'> */}
             <Header />
             <Routes>
-                <Route path="/" element={<Home />}></Route>
-                <Route path="/article/:titleid" element={<Article />}></Route>
-                <Route path="/talk" element={<Talk />}></Route>
-                <Route path='/author/:entry' element={<Author />}></Route>
-                <Route path='/*' element={<NotFound />}></Route>
+                <Route path="/" element={<Outlet />}>
+                    <Route path='/' element={<Home />}></Route>
+                    <Route path="/article/:titleid" element={<Article />}></Route>
+                    <Route path="/talk" element={<Talk />}></Route>
+                    <Route path='/author/:entry' element={<Author />}></Route>
+                    <Route path='*' element={<NotFound />}></Route>
+                </Route>
             </Routes>
             <Footer />
             <ToTop />

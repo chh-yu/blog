@@ -17,7 +17,7 @@ class Article {
 	author: string
 	content: string
 }
-const AthorRoad = () => {
+const AthorRoad: React.FC = () => {
 	const [params] = useState(useParams())
 	const [token, setToken] = useState<string>('')
 	const [data, setData] = useState<Article>(new Article())

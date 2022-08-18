@@ -15,7 +15,7 @@ interface IArticleContent {
 	cover: string
 	[key: string]: any
 }
-const Articles: any = (props: object) => {
+const Articles: React.FC = (props: object) => {
 	const [data, setData] = useState<IArticleContent>(null)
 	const [params] = useState(useParams())
 	useScrollTotop()
@@ -24,13 +24,14 @@ const Articles: any = (props: object) => {
 			id: params.titleid
 		}).then((e) => {
 			setData(e.data.data)
+			document.title = e.data.data.title
 		})
 	}, [params])
 	return data ? (
 		<div className='min-h-screen'>
 			<div
 				className="h-96 bg-cover bg-center"
-				style={{'background-image': `url("${data.cover}")`} as any}
+				style={{'backgroundImage': `url("${data.cover}")`} as any}
 			>
 				<div className="w-full h-full bg-black bg-opacity-50 flex flex-col justify-center items-center text-white">
                     <div className='font-extrabold text-3xl tracking-wider p-4'>{data.title}</div>

@@ -1,3 +1,4 @@
+
 /* 整个滚动条 */
 ::-webkit-scrollbar {
     /* 对应纵向滚动条的宽度 */
@@ -18,5 +19,12 @@
     border-radius: 32px;
 }
 .bytemd{
-    height: calc(100vh - 24rem)
+    height: calc(100vh - 24rem);
+}
+a{
+    transition: none;
+    color: inherit;
+}
+a:hover{
+    color: inherit;
 }
