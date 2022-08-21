@@ -110,7 +110,7 @@ const Home: React.FC = () => {
 			<div ref={visibleRef} className={`mt-8 flex justify-center  transition duration-500 ease-in-out ${
 				visible ? 'opacity-100' : 'opacity-0 translate-y-6'
 			}`}>
-				<Pagination current={current} total={total} showSizeChanger={false} pageSize={5} onChange={(page)=>{setCurrent(page)}}/>
+				<Pagination current={current} hideOnSinglePage={true} total={total} showSizeChanger={false} pageSize={5} onChange={(page)=>{setCurrent(page)}}/>
 			</div>
 		</>
 	)

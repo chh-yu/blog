@@ -6,6 +6,7 @@ import {formatDate} from '../utils/utils'
 import {useParams} from 'react-router-dom'
 import {debounce} from '../utils/utils'
 import { useScrollTotop, useVisibleRef } from '../utils/utils'
+import VisitorHeatmap  from '../components/VisitorHeatmap';
 
 interface ITalkItem {
 	id: number
@@ -83,6 +84,7 @@ const TalkItem: React.FC<any> = (props: any) => {
 		</div>
 	)
 }
+
 const Talk: React.FC = (props: object) => {
 	const [data, setData] = useState<ITalkItem[]>([])
 	const [now, setNow] = useState<Date>(new Date())
@@ -109,6 +111,7 @@ const Talk: React.FC = (props: object) => {
 				<div className="w-full h-full bg-black bg-opacity-50 flex flex-col justify-center items-center text-white"></div>
 			</div>
 			<div className="mt-4 mx-auto md:w-192 px-12 py-6 overflow-hidden">
+				<div className='h-44 w-full shadow-md mb-8'><VisitorHeatmap /></div>
 				{data && data.map((i) => <TalkItem now={now} data={i} key={i.id} />)}
 				<div className="mx-auto my-12 w-1/3 border border-solid border-gray-700"></div>
 			</div>
