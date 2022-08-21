@@ -5,7 +5,7 @@ export const ShareComponent = ()=>{
     const ref: any = useRef()
     const [display, setDisplay] = useState(false)
     const getPicture = useCallback(()=>{
-		let el = document.getElementById("@Set/share")
+		let el: HTMLElement = document.getElementById("@Set/share")
 		html2canvas(el).then(function(canvas) {
             setDisplay(true)
             canvas.style.height = "100%"
