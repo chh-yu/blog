@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@ant-design/charts": "^1.4.2",
     "@bytemd/plugin-breaks": "^1.17.2",
     "@bytemd/plugin-frontmatter": "^1.17.2",
     "@bytemd/plugin-gfm": "^1.17.2",
