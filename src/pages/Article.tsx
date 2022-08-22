@@ -39,7 +39,7 @@ const Articles: React.FC = (props: object) => {
 					<div className='mt-6 text-sm'>{formatDate(Number(data.timestamp)*1000)}</div>
                 </div>
 			</div>
-			<ShareComponent></ShareComponent>
+			{/* <ShareComponent></ShareComponent> */}
             <div id={'@Set/share'} className='mt-4 mx-auto md:w-192 px-12 py-6 bg-white overflow-hidden'>
                 <Viewer value={data.content} plugins={plugins}></Viewer>
                 <div className='mx-auto my-12 w-1/3 border border-solid border-gray-700'></div>

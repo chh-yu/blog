@@ -18,8 +18,13 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/
+        use: [
+          {
+            loader: 'ts-loader'
+          }
+        ],
+        exclude: /node_modules/,
+        
       },
       {
         test: /\.(png|jpg|git|jpeg)$/,

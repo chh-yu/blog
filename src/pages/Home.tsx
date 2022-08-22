@@ -25,7 +25,7 @@ const ArticleItem: React.FC<any> = (props: any) => {
 			}`}
 			ref={visibleRef}
 		>
-			<div className="cursor-pointer h-full w-24 md:w-60 bg-black overflow-hidden flex-shrink-0">
+			<div className="cursor-pointer h-full w-24 md:w-60 overflow-hidden flex-shrink-0">
 				{data.cover ? (
 					<img
 						className="transition duration-500 ease-in-out h-full w-full object-cover hover:scale-125"
