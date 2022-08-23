@@ -38,7 +38,7 @@ const App = () => {
             console.log(e)
         })
     }, [])
-	return <div className='bg-gray-100'>
+	return <>
         <React.Suspense fallback={<Loading />}>
             <Router basename='/blog'>
             {/* <Router basename='/'> */}
@@ -56,7 +56,7 @@ const App = () => {
                 <ToTop />
             </Router>
         </React.Suspense>
-    </div>
+    </>
 }
 ReactDom.render(<App></App>, document.getElementById('app'))
 
