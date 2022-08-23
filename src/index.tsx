@@ -13,6 +13,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import React, { useEffect, useCallback } from 'react'
 import ToTop from './components/ToTop'
+import Loading from './components/Loading'
 const Home = React.lazy(()=>import('./pages/Home'))
 const Talk = React.lazy(()=>import('./pages/Talk'))
 const Article = React.lazy(()=>import('./pages/Article'))
@@ -38,7 +39,7 @@ const App = () => {
         })
     }, [])
 	return <div className='bg-gray-100'>
-        <React.Suspense fallback={<div>loading...</div>}>
+        <React.Suspense fallback={<Loading />}>
             <Router basename='/blog'>
             {/* <Router basename='/'> */}
                 <Header />
