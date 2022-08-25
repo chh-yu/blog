@@ -12,7 +12,8 @@ module.exports = {
         '192': '48rem'
       },
       lineHeight: {
-        '3.5rem': '3.5rem'
+        '3.5rem': '3.5rem',
+        '4rem': '4rem'
       },
       keyframes: {
         arrow: {
