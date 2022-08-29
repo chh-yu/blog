@@ -9,6 +9,10 @@ module.exports = {
   theme: {
     extend: {
       spacing: {
+        '192': '48rem',
+        'screen-1/2': '50vh'
+      },
+      minWidth: {
         '192': '48rem'
       },
       lineHeight: {
@@ -29,8 +33,7 @@ module.exports = {
       },
       animation: {
         'arrow-animation': "arrow 2s ease-in-out infinite "
-      },
-      
+      }
     },
   },
   variants: {},

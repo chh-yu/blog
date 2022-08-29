@@ -8,7 +8,7 @@
   "scripts": {
     "start": "webpack-dev-server --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
-    "anal": "webpack --config webpack.anal.js --progress"
+    "analyze": "webpack --config webpack.anal.js --progress"
   },
   "keywords": [],
   "author": "",

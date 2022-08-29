@@ -5,6 +5,7 @@ import {formatDate} from '../utils/utils'
 import {Link, useParams} from 'react-router-dom'
 import {useScrollTotop, useVisibleRef} from '../utils/utils'
 import {Pagination} from 'antd'
+import { useAppContext } from '../contexts/AppContext'
 const plugins = [breaks()]
 interface IArticleitem {
 	id: string | number
@@ -54,6 +55,7 @@ const Home: React.FC = () => {
 	const ref = useRef()
 	const [current, setCurrent] = useState(1)
 	const [total, setTotal] = useState(0)
+	const appContext =  useAppContext()
 	useScrollTotop()
 	// useEffect(() => {
 	// 	http.get('/v1/api/article/list').then((e) => {
@@ -81,12 +83,13 @@ const Home: React.FC = () => {
 		})
 	}, [current])
 	const arrowClick = useCallback(() => {
+		console.log(appContext.headerHeight)
 		if (ref.current) {
 			const el: any = ref.current
 			const height =
-				el.clientHeight - document.getElementById('Header').clientHeight
+				// el.clientHeight - document.getElementById('Header').clientHeight
+				el.clientHeight - appContext.headerHeight
 			window.scrollTo({top: height, behavior: 'smooth'})
-			// console.log(document.getElementById("Header").clientHeight)
 		}
 	}, [ref])
 

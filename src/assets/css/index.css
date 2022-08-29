@@ -32,3 +32,9 @@ a:hover{
     background: rgb(243, 244, 246);
     min-height: 100%;
 }
+.hover-children{
+    visibility: none;
+}
+.hover-parent:hover>.hover-children{
+    visibility: visible;
+}
