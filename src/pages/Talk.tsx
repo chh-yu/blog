@@ -68,7 +68,7 @@ const TalkItem: React.FC<any> = (props: any) => {
 			<div className="text-sm text-gray-700">
 				{timeDisplay(Number(data.timestamp) * 1000, props.now.getTime())}
 			</div>
-			<div className="text-base md:text-xl my-4 ml-4 font-serif">{data.content}</div>
+			<div className="text-base md:text-base my-4 ml-4 font-serif">{data.content}</div>
 			<div className="flex flex-wrap mb-2">
 				{data.medias && data.medias.split('&&').map((i) => (
 					<div className="w-1/3 h-36 md:h-64 p-px flex-grow" key={i}>

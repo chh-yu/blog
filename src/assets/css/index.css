@@ -38,3 +38,18 @@ a:hover{
 .hover-parent:hover>.hover-children{
     visibility: visible;
 }
+*::selection {
+    color:rgb(98 189 255);
+    background-color: rgb(225, 133, 163);
+    color: white;
+}
+*::-moz-selection {
+    color:rgb(98 189 255);
+    background-color: rgb(225, 133, 163);
+    color: white;
+}
+*::-webkit-selection {
+    color:rgb(98 189 255);
+    background-color: rgb(225, 133, 163);
+    color: white;
+}

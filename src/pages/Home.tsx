@@ -7,7 +7,7 @@ import {useScrollTotop, useVisibleRef} from '../utils/utils'
 import {Pagination} from 'antd'
 import { useAppContext } from '../contexts/AppContext'
 const plugins = [breaks()]
-interface IArticleitem {
+export interface IArticleitem {
 	id: string | number
 	title: string
 	subtitle: string

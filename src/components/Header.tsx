@@ -1,7 +1,7 @@
 import {useEffect, useCallback, useState, useRef, LegacyRef} from 'react'
 import {debounce} from '../utils/utils'
 import {Link, Location} from 'react-router-dom'
-import {useAppContext} from '../contexts/AppContext'
+import {HeaderMode, useAppContext} from '../contexts/AppContext'
 const useHeaderRef = () => {
 	const [headerNode, setHeaderNode] = useState(null)
 	const ref = useCallback((node: HTMLElement) => {
@@ -14,6 +14,8 @@ const Header: any = () => {
 	const [nav, setNav] = useState(false)
 	const [headerNodeRef, headerNode] = useHeaderRef()
 	const appContext = useAppContext()
+	const mode = appContext.headerMode
+	
 	useEffect(() => {
 		const compute = debounce(() => {
 			document.body.getClientRects()[0].top >= 0
@@ -40,7 +42,7 @@ const Header: any = () => {
 				}`}
 			>
 				<div
-					className="hidden md:flex gap-8 leading-3.5rem h-14"
+					className={`hidden md:flex gap-8 leading-3.5rem h-14 ${mode==='unwrap' ? 'md:hidden':'md:flex'}`}
 				>
 					<div className="cursor-pointer">
 						<Link to="/">首页</Link>
@@ -48,14 +50,16 @@ const Header: any = () => {
 					<div className="cursor-pointer">
 						<Link to="/talk">空间</Link>
 					</div>
-					<div className="cursor-pointer">事件</div>
-					<div className="cursor-pointer">我</div>
+					<div className="cursor-pointer">
+						<Link to="/events">Seth</Link>
+					</div>
+					{/* <div className="cursor-pointer">我</div> */}
 				</div>
 				<div
 					onClick={() => {
 						setNav(!nav)
 					}}
-					className="cursor-pointer iconfont icon-caidan text-2xl leading-3.5rem md:hidden absolute left-8 h-14 w-14"
+					className={`cursor-pointer iconfont icon-caidan text-2xl leading-3.5rem absolute left-8 h-14 w-14 ${mode==='unwrap' ? 'md:block':'md:hidden'}`}
 				></div>
 				{nav && (
 					<div
@@ -71,11 +75,11 @@ const Header: any = () => {
 							<Link to="/talk">空间</Link>
 						</div>
 						<div className="cursor-pointer mx-14 h-10 leading-10 border-b border-gray-300 border-solid">
-							事件
+							<Link to="/events">Seth</Link>
 						</div>
-						<div className="cursor-pointer mx-14 h-10 leading-10 border-b border-gray-300 border-solid">
+						{/* <div className="cursor-pointer mx-14 h-10 leading-10 border-b border-gray-300 border-solid">
 							我
-						</div>
+						</div> */}
 					</div>
 				)}
 			</div>

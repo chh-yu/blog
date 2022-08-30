@@ -5,17 +5,20 @@ import {
 	ReactElement,
 	ReactNode,
 } from 'react'
+export type HeaderMode = 'unwrap' | undefined
 /**
  * 提供App上下文变量
  * headerHeight保存Header组件的高度
- * 
+ * HeaderMode设置为'unwrap'时，强制头部菜单收缩
  */
 interface IAppContext {
 	headerHeight: number
-	onHeaderHeightChange: (height: number) => void
+	onHeaderHeightChange: (height: number) => void,
+    headerMode: HeaderMode,
+    onHeaderModeChange: (mode: HeaderMode) => void
 }
 
-const Appcontext = createContext<IAppContext>(null)
+const AppContext = createContext<IAppContext>(null)
 
 export const AppContextProvider = ({
 	children = null,
@@ -26,18 +29,24 @@ export const AppContextProvider = ({
 	const onHeaderHeightChange = (headerHeight: number) => {
 		setHeaderHeight(headerHeight)
 	}
+    const [headerMode, setHeaderMode] = useState<HeaderMode>(undefined)
+    const onHeaderModeChange = (mode: HeaderMode) => {
+        setHeaderMode(mode)
+    }
 	return (
-		<Appcontext.Provider
+		<AppContext.Provider
 			value={{
 				headerHeight,
 				onHeaderHeightChange,
+                headerMode,
+                onHeaderModeChange
 			}}
 		>
             {children}
-        </Appcontext.Provider>
+        </AppContext.Provider>
 	)
 }
 export const useAppContext = ()=>{
-    return useContext(Appcontext)
+    return useContext(AppContext)
 }
 export default AppContextProvider
