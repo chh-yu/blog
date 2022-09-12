@@ -3,6 +3,7 @@ import {
 } from 'react-router-dom'
 import 'tailwindcss/tailwind.css'
 import './assets/css/index.css'
+import './assets/css/markdown.css'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import { useEffect, useCallback, useContext } from 'react'
