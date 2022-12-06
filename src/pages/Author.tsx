@@ -109,7 +109,7 @@ const AthorRoad: React.FC = () => {
 			<div
 				className="h-96 bg-cover bg-center"
 				style={
-					{'background-image': `url(https://chyu123.top/img/50.jpg)`} as any
+					{'background-image': `url(https://heliopolis.top/img/50.jpg)`} as any
 				}
 			>
 				<div className="w-full h-full bg-black bg-opacity-50 flex flex-col justify-center items-center text-white"></div>

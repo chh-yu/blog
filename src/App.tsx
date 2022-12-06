@@ -8,7 +8,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import { useEffect, useCallback, useContext } from 'react'
 import ToTop from './components/ToTop'
-import AppRouter from './Router/index'
+import AppRouter from './Router/Index'
 import http from './utils/http'
 import AppContextProvider from './contexts/AppContext'
 
@@ -35,7 +35,7 @@ const App = () => {
     useCheckin()
 	return <div className='font-serif'>
         <AppContextProvider>
-            <Router basename='/blog'>
+            <Router basename='/'>
                 <Header />
                 <AppRouter />
                 <Footer />

@@ -44,9 +44,9 @@ const GenerateCataLog = (articleContentNode: HTMLElement)=>{
     node.childNodes.forEach((i) => {
         let match = i.nodeName.match(/^H(\d)$/)
         if (match) {
-            let marginLeft = match[1]
+            let marginLeft = Number(match[1])-1
             let artibute = 'text-base leading-8 cursor-pointer rounded hover:bg-gray-200 overflow-hidden whitespace-nowrap overflow-ellipsis'.split(' ')
-            artibute.push(`ml-${marginLeft}`)
+            artibute.push(`ml-${marginLeft*4}`)
             itemArr.push(new VirCataLogItem(artibute, i.textContent, i as any))
         }
     })

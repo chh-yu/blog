@@ -13,6 +13,6 @@ module.exports = merge(common, {
         chunkFilename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
         // publicPath: 'http://localhost:5500/'
-        publicPath: 'https://chyu123.top/blog/'
+        publicPath: 'https://blog.heliopolis.top/'
       },
 })

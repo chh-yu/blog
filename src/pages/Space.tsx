@@ -6,6 +6,7 @@ import {formatDate} from '../utils/utils'
 import {useParams} from 'react-router-dom'
 import {debounce} from '../utils/utils'
 import { useScrollTotop, useVisibleRef } from '../utils/utils'
+import Poster from '../components/Poster'
 
 interface ITalkItem {
 	id: number
@@ -101,14 +102,7 @@ const Talk: React.FC = (props: object) => {
 	}, [])
 	return (
 		<div className="min-h-screen">
-			<div
-				className="h-96 bg-cover bg-center"
-				style={
-					{'backgroundImage': `url(https://chyu123.top/img/back.webp)`} as any
-				}
-			>
-				<div className="w-full h-full bg-black bg-opacity-50 flex flex-col justify-center items-center text-white"></div>
-			</div>
+			<Poster picture='https://heliopolis.top/img/back.webp' mode='small' isArrowExist={false} shadow={true}></Poster>
 			<div className="mt-4 mx-auto md:w-192 px-12 py-6 overflow-hidden">
 				{/* <div className='h-44 w-full shadow-md mb-8'><VisitorHeatmap /></div> */}
 				{data && data.map((i) => <TalkItem now={now} data={i} key={i.id} />)}

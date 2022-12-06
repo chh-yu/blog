@@ -18,8 +18,8 @@ module.exports = merge(common, {
         filename: '[name].bundle.js',
         chunkFilename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
-        // publicPath: 'https://chyu123.top/blog/'
+        // publicPath: 'https://heliopolis.top/'
         // publicPath: 'http://localhost:5500/'
         publicPath: 'http://localhost:8080/'
-      },
+    },
 })

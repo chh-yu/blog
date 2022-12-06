@@ -7,7 +7,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'My react',
+      title: 'Seth ·',
       template: './public/index.html'
     })
   ],
@@ -49,6 +49,14 @@ module.exports = {
           },
           {
             loader: "postcss-loader"
+          }
+        ]
+      },
+      {
+        test: /\.mdx?$/,
+        use: [
+          {
+            loader: '@mdx-js/loader'
           }
         ]
       }

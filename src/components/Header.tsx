@@ -48,6 +48,9 @@ const Header: any = () => {
 						<Link to="/">首页</Link>
 					</div>
 					<div className="cursor-pointer">
+						<Link to="/codepost">随编</Link>
+					</div>
+					<div className="cursor-pointer">
 						<Link to="/talk">空间</Link>
 					</div>
 					<div className="cursor-pointer">
@@ -70,6 +73,9 @@ const Header: any = () => {
 					>
 						<div className="cursor-pointer mx-14 h-10 leading-10 border-b border-gray-300 border-solid">
 							<Link to="/">首页</Link>
+						</div>
+						<div className="cursor-pointer mx-14 h-10 leading-10 border-b border-gray-300 border-solid">
+							<Link to="/codepost">随编</Link>
 						</div>
 						<div className="cursor-pointer mx-14 h-10 leading-10 border-b border-gray-300 border-solid">
 							<Link to="/talk">空间</Link>
